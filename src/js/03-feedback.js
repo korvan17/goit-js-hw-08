@@ -9,6 +9,11 @@ function onInput(e) {
   const name = e.target.name;
   val[name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(val));
+  if (name === 'email') {
+    val.message = form.querySelector('textarea').textContent;
+  } else {
+    val.email = form.querySelector('input').value;
+  }
 }
 
 function onFormSubmit(event) {
