@@ -20,6 +20,8 @@ function onFormSubmit(event) {
   const data = {};
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
+  const FEEDBACK = 'feedback-form-state';
+
   formData.forEach((val, name) => {
     data[name] = val;
     if (val === '') {
@@ -27,12 +29,13 @@ function onFormSubmit(event) {
     }
   });
   if (data.email !== '' && data.password !== '') {
-    console.log(localStorage.getItem('feedback-form-state'));
-    localStorage.removeItem('feedback-form-state');
+    console.log(localStorage.getItem(JSON.parse(FEEDBACK)));
+    localStorage.removeItem(FEEDBACK);
     form.reset();
   }
 }
-const valLocalStorage = localStorage.getItem('feedback-form-state');
+const valLocalStorage = localStorage.getItem(FEEDBACK);
+
 if (valLocalStorage) {
   const object = JSON.parse(valLocalStorage);
   if (object.email) {
